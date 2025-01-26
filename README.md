@@ -3,7 +3,7 @@
 
 # Linux NTFS MBR Bootloader
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-stable-green.svg)
+![GitHub License](https://img.shields.io/github/license/KingJamesIX/Linux_NTFS_MBR) ![Status](https://img.shields.io/badge/status-stable-green.svg)
 
 ## Overview
 This project modifies the **Windows XP MBR bootloader** to allow **native Linux booting from an NTFS partition**. By replacing Windows-specific assumptions (`NTLDR`) with support for **Linux boot sectors**, this bootloader makes dual-booting, system recovery, and legacy hardware support significantly more powerful.
