@@ -22,9 +22,8 @@ BOOTSECTRAILSIGH        EQU 0AA55h
 RELOCATION_ORG  EQU     600h
 READ_RETRY_CNT  EQU     5
 
-data    segment
-        assume  cs:data, ds:data, es:nothing, ss:nothing
-        org     RELOCATION_ORG
+section .data
+             RELOCATION_ORG
 
 ;-------------------------------------------------------------------------------
 ; Entry point: Start execution in BIOS boot mode (Real Mode, 16-bit)
@@ -69,18 +68,18 @@ StartLoad:
         jnc     CheckPbr
 
         ; If failed, check for backup boot sector
-        cmp     byte ptr [bp+4], PART_IFS
+        cmp     byte  [bp+4], PART_IFS
         je      trybackup
         jmp     display_error
 
 trybackup:
-        add     word ptr [bp+8], 6
+        add     word  [bp+8], 6
         call    ReadSector
         jnc     CheckPbr
         jmp     display_error
 
 CheckPbr:
-        cmp     word ptr ds:[VOLBOOT_ORG + SIZE_SECTOR - 2], BOOTSECTRAILSIGH
+        cmp     word  ds:[VOLBOOT_ORG + SIZE_SECTOR - 2], BOOTSECTRAILSIGH
         je      done
         jmp     display_error
 
